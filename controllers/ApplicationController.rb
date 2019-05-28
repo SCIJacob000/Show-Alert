@@ -53,9 +53,4 @@ class ApplicationController < Sinatra::Base
     #           # res.status(404).send('404 page not found')
     halt 404
   end
-
-
-
-
-
 end

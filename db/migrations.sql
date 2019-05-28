@@ -1,5 +1,5 @@
 DROP DATABASE IF EXISTS show_stopper;
-CREATE DTATBASE show_stopper;
+CREATE DATATBASE show_stopper;
 
 \c show_stopper;
 
@@ -12,8 +12,7 @@ description TEXT
 
 CREATE TABLE shows(
 id SERIAL PRIMARY KEY,
-show_date DATE,
-show_time TIME,
+date_time TIMESTAMP WITHOUT TIME ZONE,
 tickets VARCHAR(256)
 );
 
@@ -21,6 +20,6 @@ tickets VARCHAR(256)
 CREATE TABLE booking(
 id SERIAL PRIMARY KEY,
 venue VARCHAR(256),
-show_id INTEGER REFERANCES shows(id), --foriegn key
-band_id INTEGER REFERANCES bands(id) -- foriegn key
+show_id INTEGER REFERENCES shows(id), --foriegn key
+band_id INTEGER REFERENCES bands(id) -- foriegn key
 );
