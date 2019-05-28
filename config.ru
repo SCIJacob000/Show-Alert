@@ -15,13 +15,13 @@ map ('/') {
   run ApplicationController
 }
 
-map ('/bands') {
-  run BandController
-}
+# map ('/bands') {
+#   run BandController
+# }
 
-map ('/shows') {
-  run ShowController
-}
-map ('/bookings'){
-	run BookingController
-}
+# map ('/shows') {
+#   run ShowController
+# }
+# map ('/bookings'){
+# 	run BookingController
+# }
