@@ -34,6 +34,11 @@ class ShowController < ApplicationController
   
       erb :show_index
     end
+    #show
+    get "/:id/show" do
+
+      erb :show_show
+    end
   
    
     # edit
@@ -43,7 +48,9 @@ class ShowController < ApplicationController
     #   # render a form with show data
       erb :show_edit
     end
-  
+    get '/new' do
+      redirect '/shows/new'
+    end
     # create
     post '/' do
       # create new show
