@@ -16,17 +16,17 @@ end
 
 
 
- post '/login' do
+post '/login' do
   	band = Band.find_by username: params[:username]
   	pw=params[:password]
-  if band && band.authenticate(pw)
+  	if band && band.authenticate(pw)
   	session[:logged_in] = true
   	session[:username]= band.username
   	session[:message]= {
   		success: true,
   		message: "You are logged in as #{band.username}"
   	}
-  else
+  	else
         session[:message] = {
            success: false,
            message: "Invalid Log-In Credentials Please Try Again!"
@@ -34,7 +34,7 @@ end
         redirect '/bands'
     end
   
-  end
+end
 
 #this is essentially the "new band" page
 get '/register' do
@@ -57,13 +57,13 @@ post '/register' do
   		message: "Welcome to the family #{band.username}"
   	}
   	redirect '/bands'
-  else
+  	else
   	session[:message]={
   		success: false,
   		message: "Sorry there is another band with that name already and they rock harder than you!"
   	}
   	redirect '/bands/register'
-  end
+  	end
 end
 
 get '/logout' do
