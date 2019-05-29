@@ -25,15 +25,9 @@ map ('/shows') {
 # 	run BookingController
 # }
 
-<<<<<<< Updated upstream
-# map ('/bands') {
-#   run BandController
-# }
-=======
 map ('/bands') {
   run BandController
 }
->>>>>>> Stashed changes
 
 
 
