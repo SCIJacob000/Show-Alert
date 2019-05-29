@@ -17,17 +17,18 @@ map ('/') {
   run ApplicationController
 }
 
+
 map ('/shows') {
   run ShowController
+
+map ('/bands') {
+  run BandController
 }
 
 # map ('/bookings'){
 # 	run BookingController
 # }
 
-# map ('/bands') {
-#   run BandController
-# }
 
 
 

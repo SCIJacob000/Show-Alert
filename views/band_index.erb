@@ -6,11 +6,13 @@
 <body>
 	<h1>Bands:</h1>
 	<ul>
-		<% for i in bands do%>
+
+		<% @bands.each do |band| %>
 			<li>
-				<a href="/bands/<%=[i]%>">bands[i].name</a>
+				<a href="#"><%=band.name%></a>
 			</li>
 		<%end%>
+
 	</ul>
 </body>
 </html>
