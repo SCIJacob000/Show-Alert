@@ -52,16 +52,20 @@ class ShowController < ApplicationController
       new_show.date_time = params[:date_time]
       new_show.tickets = params[:tickets]
       new_show.save 
+
       # figure out who's logged in and create a booking that associates this new show with that band!
-      logged_in_band = Band.find_by({:username => session[:username]})
+      logged_in_band = Band.find_by name: session[:username]
       
+      puts "here is the logged in band: " 
+      puts logged_in_band
+
       new_booking = Booking.new
       new_booking.venue = params[:venue]
       new_booking.band_id = logged_in_band.id
       new_booking.show_id = new_show.id
       new_booking.save
       puts new_booking
-      
+
       session[:message]={
         success: true,
         message: "Successfully created show at #{new_booking.venue}"
@@ -72,6 +76,9 @@ class ShowController < ApplicationController
      # new -- 
   get '/new' do
     # just render template that has form      # just render template that has form
+    puts "here is the session"
+    puts session
+
     erb :new_show
   end
   
@@ -130,7 +137,7 @@ class ShowController < ApplicationController
     #   puts "after filter is running"
     # end
   
-  end
+end
 
 
 

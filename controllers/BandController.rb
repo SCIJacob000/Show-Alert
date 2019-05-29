@@ -25,13 +25,14 @@ post '/login' do
   	pw = params[:password]
   	if band && band.authenticate(pw)
   		session[:logged_in] = true
-  		session[:username]= band.name
+  		session[:username]= params[:username]
   	else
         session[:message] = {
            success: false,
            message: "Invalid Log-In Credentials Please Try Again!"
     }
     end
+    puts session[:username]
         redirect '/bands'
 end
 
