@@ -49,26 +49,23 @@ class ShowController < ApplicationController
       # create new show
       new_show = Show.new
       # set fields
-      new_show.id = params[:id]
       new_show.date_time = params[:date_time]
       new_show.tickets = params[:tickets]
+      new_show.save 
+      # figure out who's logged in and create a booking that associates this new show with that band!
+      logged_in_band = Band.find_by({:username => session[:username]})
       
-      # figure out who's logged in and make this be one of 
-      # their shows
-      # logged_in_band = Band.find_by({:username => session[:username]})
-  
-      # new_show.band_id = logged_in_band.id
-  
-      # save
-     new_show.save # id is now defined on this instance of the model
-  
-      # session[:message] = {
-      #   success: true,
-      #   status: "good",
-      #   message: "Successfully created show ##{new_show.id}"
-      # }
-  
-      # redirect (to index perhaps?)
+      new_booking = Booking.new
+      new_booking.venue = params[:venue]
+      new_booking.band_id = logged_in_band.id
+      new_booking.show_id = new_show.id
+      new_booking.save
+      puts new_booking
+      
+      session[:message]={
+        success: true,
+        message: "Successfully created show at #{new_booking.venue}"
+      }
       redirect '/shows'
     end
   

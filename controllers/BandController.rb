@@ -1,6 +1,10 @@
 class BandController < ApplicationController
 
 
+#this is essentially the "new band" page
+get '/register' do
+   erb :register
+end
 # user = User.find_by username: params[:username]
 # pw = params[:password]
 # set session
@@ -17,40 +21,32 @@ end
 
 
 post '/login' do
-  	band = Band.find_by username: params[:username]
-  	pw=params[:password]
+  	band = Band.find_by name: params[:username]
+  	pw = params[:password]
   	if band && band.authenticate(pw)
-  	session[:logged_in] = true
-  	session[:username]= band.username
-  	session[:message]= {
-  		success: true,
-  		message: "You are logged in as #{band.username}"
-  	}
+  		session[:logged_in] = true
+  		session[:username]= band.name
   	else
         session[:message] = {
            success: false,
            message: "Invalid Log-In Credentials Please Try Again!"
     }
-        redirect '/bands'
     end
+        redirect '/bands'
 end
 
-#this is essentially the "new band" page
-get '/register' do
-   erb :register
-end
   
 #this is essentially the create route for a "new band"
 post '/register' do
-	band = Band.find_by username: params[:username]
+	band = Band.find_by name: params[:username]
     if !band
   	band = Band.new
-    band.username = params[:username]
+    band.name = params[:username]
     band.password = params[:password]
     band.description = params[:description]
   	band.save
   	session[:logged_in]= true
-  	session[:username]= band.username
+  	session[:username]= band.name
   	session[:message]={
   		success: true,
   		message: "Welcome to the family #{band.username}"
@@ -61,7 +57,7 @@ post '/register' do
   		success: false,
   		message: "Sorry there is another band with that name already and they rock harder than you!"
   	}
-  	redirect '/bands/register'
+  	redirect '/bands'
   	end
 end
 
@@ -77,7 +73,7 @@ end
 
 put '/:id' do 
 	band = Band.find params[:id]
-	band.name = params[:name]
+	band.name = params[:username]
 	band.password = params[:password]
 	band.description = params[:description]
 	band.save
