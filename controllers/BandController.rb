@@ -76,10 +76,6 @@ get '/logout' do
       redirect '/bands/login'
 end
 
-get '/' do
-	bands = Band.all 
-	erb :band_index
-end
 
 put '/:id' do 
 	band = Band.find params[:id]
@@ -98,5 +94,10 @@ delete '/:id' do
 	band = Band.find params[:id]
 	band.destroy
 	redirect '/bands'
+end
+
+get '/' do
+	bands = Band.all 
+	erb :band_index
 end
 end
