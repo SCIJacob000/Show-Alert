@@ -73,17 +73,17 @@ class ShowController < ApplicationController
     end
   
      # new -- 
-  get '/new' do
+    get '/new' do
     # just render template that has form      # just render template that has form
-    erb :new_show
-  end
+      erb :new_show
+    end
   
     # show -- 
       # get show from db in a var
       # render show page with it
       
     # update 
-     put '/:id' do
+    put '/:id' do
     #   # find it
        show = Show.find params[:id]
       
