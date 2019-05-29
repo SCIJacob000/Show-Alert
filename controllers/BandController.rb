@@ -4,6 +4,17 @@ class BandController < ApplicationController
 # user = User.find_by username: params[:username]
 # pw = params[:password]
 # set session
+get '/:id/edit' do
+	@band = Band.find params[:id]#again i believe this will work as long as the link that takes you here includes the bands id!
+	erb :band_edit
+end
+
+get '/:id' do
+	band = Band.find_by id: params[:id] #make sure to embed the id in the query string aka path of link that hits this route!
+	erb :band_show
+end
+
+
 
  post '/login' do
   	band = Band.find_by username: params[:username]
@@ -26,69 +37,66 @@ class BandController < ApplicationController
   
   end
 
-
+#this is essentially the "new band" page
 get '/register' do
    erb :register
 end
   
-
+#this is essentially the create route for a "new band"
 post '/register' do
 	band = Band.find_by username: params[:username]
     if !band
   	band = Band.new
-    user.username = params[:username]
-  
-#         # HEY: if has_secure_password is specified in User model
-#         # .password= setter method will automatically encrypt
-#         # the password for you and store it in a field on the 
-#         # User model called "password_digest"
-#         user.password = params[:password]
-  
-#         user.save
-  
-#         # add stuff to session: loggedin, username, message
-#         session[:logged_in] = true
-#         session[:username] = user.username
-#         session[:message] = {
-#           success: true,
-#           status: "good",
-#           message: "Welcome to the site, you are now logged in as #{user.username}."
-#         }
-  
-#         # redirect to the site
-#         redirect '/items'
-  
-#       # else if user does exist
-#       else 
-#         # session message -- username taken
-#         session[:message] = {
-#           success: false,
-#           status: "bad",
-#           message: "Sorry, username #{params[:username]} is already taken."
-#         }
-#         # redirect to register so they can try again
-#         redirect '/users/register'
-  
-#       end
-  
-#     end
-  
-#     # logout
-#     get '/logout' do
-      
-#       username = session[:username] # grab username before destroying session...
-  
-#       session.destroy
-  
-#       session[:message] = {
-#         success: true,
-#         status: "neutral",
-#         message: "User #{username} logged out." #...so that we can use it here
-#       }
-  
-#       redirect '/users/login'
-  
-#     end
-  
-#   end
+    band.username = params[:username]
+    band.password = params[:password]
+    band.description = params[:description]
+  	band.save
+  	session[:logged_in]= true
+  	session[:username]= band.username
+  	session[:message]={
+  		success: true,
+  		message: "Welcome to the family #{band.username}"
+  	}
+  	redirect '/bands'
+  else
+  	session[:message]={
+  		success: false,
+  		message: "Sorry there is another band with that name already and they rock harder than you!"
+  	}
+  	redirect '/bands/register'
+  end
+end
+
+get '/logout' do
+    session.destroy
+    session[:message] = {
+      success: true,
+      message: "Rock On Dudes" #...so that we can use it here
+    }
+      redirect '/bands/login'
+end
+
+get '/' do
+	bands = Band.all 
+	erb :band_index
+end
+
+put '/:id' do 
+	band = Band.find params[:id]
+	band.name = params[:name]
+	band.password = params[:password]
+	band.description = params[:description]
+	band.save
+	session[:message]={
+		success: true,
+		message: "Updates to band info successfull!"
+	}
+	redirect '/bands'
+end
+
+delete '/:id' do 
+	band = Band.find params[:id]
+	band.destroy
+	redirect '/bands'
+end
 end
