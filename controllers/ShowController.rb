@@ -91,7 +91,11 @@ class ShowController < ApplicationController
     #   # is logged in and its their show
   
     #   # change it
+<<<<<<< HEAD
        show.tickets = params[:tickets]
+=======
+       shows.tickets = params[:tickets]
+>>>>>>> calvin
        show.date_time = params[:date_time]
        show.id = params[:id]
     #   # save it
