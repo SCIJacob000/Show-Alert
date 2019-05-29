@@ -1,69 +1,42 @@
-# class UserController < ApplicationController
+class BandController < ApplicationController
 
-#     # shows login page
-#     get '/login' do
-#       erb :login
-#     end
+
+# user = User.find_by username: params[:username]
+# pw = params[:password]
+# set session
+
+ post '/login' do
+  	band = Band.find_by username: params[:username]
+  	pw=params[:password]
+  if user && user.authenticate(pw)
+  	session[:logged_in] = true
+  	session[:username]= band.username
+  	session[:message]= {
+  		success: true,
+  		message: "You are logged in as #{band.username}"
+  	}
+  else{
+        session[:message] = {
+           success: false,
+           message: "Invalid Log-In Credentials Please Try Again!"
+        }
+    }
+        redirect '/bands'
+    end
   
-#     # do the login 
-#     post '/login' do
+  end
+
+
+get '/register' do
+   erb :register
+end
   
-#       # find user by username
-#       user = User.find_by username: params[:username]
-  
-#       # pp user # help us as devs see whether its a username or pw issue
-#       # or you could use binding.pry
-  
-#       pw = params[:password]
-  
-#       # if the user exists and password is correct --
-#       # password is now being checked using bcrypt
-#       if user && user.authenticate(pw)
-#         # add stuff to session: loggedin, username, message
-#         session[:logged_in] = true
-#         session[:username] = user.username
-#         session[:message] = {
-#           success: true,
-#           status: "good",
-#           message: "Logged in as #{user.username}"
-#         }
-#         # redirect to /items
-#         redirect '/items'
-  
-#       # else 
-#       else
-#         # error -- incorrect un or pw
-#         session[:message] = {
-#           success: false,
-#           status: "bad",
-#           message: "Invalid username or password."
-#         }
-        
-#         # redirect to /login so they can reattempt
-#         redirect '/users/login'
-#       end
-  
-#     end
-  
-  
-#     # shows register 
-#     get '/register' do
-#       erb :register
-#     end
-  
-#     # do registration
-#     post '/register' do
-  
-#       # check if user exists 
-#       user = User.find_by username: params[:username]
-#             # User.find_by({ :username => params[:username] })
-  
-#       # if user doesn't exist
-#       if !user
-  
-#         # create user 
-#         user = User.new
-#         user.username = params[:username]
+
+post '/register' do
+	band = Band.find_by username: params[:username]
+    if !band
+  	band = Band.new
+    user.username = params[:username]
   
 #         # HEY: if has_secure_password is specified in User model
 #         # .password= setter method will automatically encrypt
@@ -118,3 +91,4 @@
 #     end
   
 #   end
+end
