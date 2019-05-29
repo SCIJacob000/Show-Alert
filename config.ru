@@ -15,9 +15,9 @@ map ('/') {
   run ApplicationController
 }
 
-# map ('/bands') {
-#   run BandController
-# }
+map ('/bands') {
+  run BandController
+}
 
 # map ('/shows') {
 #   run ShowController

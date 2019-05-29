@@ -33,7 +33,6 @@ post '/login' do
     }
         redirect '/bands'
     end
-  
 end
 
 #this is essentially the "new band" page
@@ -96,7 +95,7 @@ delete '/:id' do
 end
 
 get '/' do
-	bands = Band.all 
+	@bands = Band.all 
 	erb :band_index
 end
 end
