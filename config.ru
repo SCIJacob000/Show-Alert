@@ -19,9 +19,9 @@ map ('/') {
 #   run BandController
 # }
 
-# map ('/shows') {
-#   run ShowController
-# }
+map ('/shows') {
+  run ShowController
+}
 # map ('/bookings'){
 # 	run BookingController
 # }

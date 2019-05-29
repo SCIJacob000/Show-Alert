@@ -1,10 +1,5 @@
-<<<<<<< HEAD
-<<<<<<< Updated upstream
-=======
-=======
->>>>>>> 6c332c3b5b8a1fec3d3b2c9eb4481203115229d9
-DROP DATABASE IF EXISTS show_stopper;
-CREATE DATABASE show_stopper;
+
+
 
 \c show_stopper;
 
