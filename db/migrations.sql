@@ -1,7 +1,10 @@
+<<<<<<< HEAD
 <<<<<<< Updated upstream
 =======
+=======
+>>>>>>> 6c332c3b5b8a1fec3d3b2c9eb4481203115229d9
 DROP DATABASE IF EXISTS show_stopper;
-CREATE DATATBASE show_stopper;
+CREATE DATABASE show_stopper;
 
 \c show_stopper;
 
@@ -19,10 +22,10 @@ tickets VARCHAR(256)
 );
 
 -- THROUGH TABLE
+
 CREATE TABLE bookings(
 id SERIAL PRIMARY KEY,
 venue VARCHAR(256),
 show_id INTEGER REFERENCES shows(id), --foriegn key
 band_id INTEGER REFERENCES bands(id) -- foriegn key
 );
->>>>>>> Stashed changes
