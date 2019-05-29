@@ -1,9 +1,17 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Edit Show</title>
+</head>
+<body>
   <h2>Edit your show here!</h2>
   <form action="/shows/<%= @show.id %>" method="POST">
-    <input type="hidden" name="_method" value="PUT" />
-   <input type="text" name="venue" placeholder="venue" />
-    <input type="text" name="tickets" placeholder="Available?" />
-    <input type="text" name="date_time" placeholder="yyyy, m, d, H, M, S" />
-    <button>Update show!</button>
+   <input type="hidden" name="_method" value="PUT" />
+   <!-- <input type="text" name="id" value="<%= @show.id %>" placeholder="<%= @show.id %>"/> -->
+   <input type="text" name="tickets" value="<%= @show.tickets %>" placeholder="Available?" />
+   <input type="text" name="date_time" value="<%= @show.date_time %>" placeholder="yyyy, m, d, H, M, S" />
+   <button>Update show!</button>
   </form>
+</body>
+</html> 
+
