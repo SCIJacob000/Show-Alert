@@ -49,32 +49,35 @@ class ShowController < ApplicationController
       # create new show
       new_show = Show.new
       # set fields
-      new_show.id = params[:id]
       new_show.date_time = params[:date_time]
       new_show.tickets = params[:tickets]
+      new_show.save 
+
+      # figure out who's logged in and create a booking that associates this new show with that band!
+      logged_in_band = Band.find_by name: session[:username]
       
-      # figure out who's logged in and make this be one of 
-      # their shows
-      # logged_in_band = Band.find_by({:username => session[:username]})
-  
-      # new_show.band_id = logged_in_band.id
-  
-      # save
-     new_show.save # id is now defined on this instance of the model
-  
-      # session[:message] = {
-      #   success: true,
-      #   status: "good",
-      #   message: "Successfully created show ##{new_show.id}"
-      # }
-  
-      # redirect (to index perhaps?)
+      puts "here is the logged in band: " 
+      puts logged_in_band
+
+      new_booking = Booking.new
+      new_booking.venue = params[:venue]
+      new_booking.band_id = logged_in_band.id
+      new_booking.show_id = new_show.id
+      new_booking.save
+      puts new_booking
+
+      session[:message]={
+        success: true,
+        message: "Successfully created show at #{new_booking.venue}"
+      }
       redirect '/shows'
     end
   
      # new -- 
     get '/new' do
     # just render template that has form      # just render template that has form
+    puts "here is the session"
+    puts session
       erb :new_show
     end
   
@@ -109,23 +112,15 @@ class ShowController < ApplicationController
   
     # # destroy
      delete '/:id' do
-    #   # find it
+    #   # find it 
+     # booking = Booking.find_by show_id: params[:id]
       show = Show.find params[:id]
-      
-    #   # in the API -- be sure to check that the person doing this
-    #   # is logged in and its their show
-  
-    #   # destroy it
+      bookings = show.bookings
+      puts "This is the booking that is to be destroyed"
+      puts bookings
+      bookings.destroy
       show.destroy
-  
-    #   session[:message] = {
-    #     success: true,
-    #     status: "good",
-    #     message: "Successfully destroyed show ##{show.id}"
-    #   }
-  
-    #   # redirect (to index perhaps?)
-     redirect '/shows'
+      redirect '/shows'
   
     end
   
@@ -133,7 +128,7 @@ class ShowController < ApplicationController
     #   puts "after filter is running"
     # end
   
-  end
+end
 
 
 
