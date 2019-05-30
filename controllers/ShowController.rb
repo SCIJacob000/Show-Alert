@@ -113,7 +113,7 @@ class ShowController < ApplicationController
     # # destroy
      delete '/:id' do
     #   # find it 
-      booking = Booking.find_by show_id: params[:id]
+     # booking = Booking.find_by show_id: params[:id]
       show = Show.find params[:id]
       bookings = show.bookings
       puts "This is the booking that is to be destroyed"
