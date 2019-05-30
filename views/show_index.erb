@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-  <title>Show list</title>
-</head>
-<body>
+
  <h2>Show Index</h2>
   <ul>
     <% @shows.each do |show| %>
@@ -11,7 +6,6 @@
           <%= show.id %>
           <%= show.date_time %>
           <%= show.tickets %>
-          <a href="/shows/new">(Add a Show!)</a> 
           <a href="/shows/<%= show.id %>/edit">(Edit)</a> 
           <form action="/shows/<%= show.id %>" method="POST">
             <input type="hidden" name="_method" value="DELETE">
@@ -21,5 +15,3 @@
     <% end %>
   </ul>
 
-</body>
-</html> 

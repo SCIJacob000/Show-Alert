@@ -1,0 +1,24 @@
+ 
+ 
+ 
+ LAYOUT.ERB STUFF:
+
+
+
+   <nav>
+      <% if session[:logged_in] %>
+        Logged in as <%= session[:bandname] %>
+        <a href="/bands/logout">Log out</a>
+      <% else %>
+        <a href="/bands/login">Log in</a> | 
+        <a href="/bands/register">Register</a>
+      <% end %>
+    </nav>
+ 
+ 
+ <% if session[:message] %>
+    <p class="message <%= session[:message][:status] %>"><%= session[:message][:message] %></p>
+  <% 
+    end
+    session[:message] = nil # so the band won't keep seeing an old message
+  %>

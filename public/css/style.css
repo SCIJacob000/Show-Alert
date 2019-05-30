@@ -11,41 +11,9 @@
   } 
 
 
+header {
+  text-emphasis-color: blue;
+  text-decoration-color: green;
 
-  <!DOCTYPE html>
-<html>
-<head>
-  <title>Show Site</title>
-  <link rel="stylesheet" type="text/css" href="/css/style.css">
-</head>
-<body>
-
-  <header>
-    <nav>
-      <a href="/shows">Show Index</a> | 
-      <a href="/shows/new">Add a new Show</a>
-    </nav>
-
-    <!-- <nav>
-      <% if session[:logged_in] %>
-        Logged in as <%= session[:username] %>
-        <a href="/users/logout">Log out</a>
-      <% else %>
-        <a href="/users/login">Log in</a> | 
-        <a href="/users/register">Register</a>
-      <% end %>
-    </nav>
- -->
-  </header>
-
-<!--   <% if session[:message] %>
-    <p class="message <%= session[:message][:status] %>"><%= session[:message][:message] %></p>
-  <% 
-    end
-    session[:message] = nil # so the user won't keep seeing an old message
-  %> -->
-
-  <%= yield %>
-
-</body>
-</html>
+}
+ 
