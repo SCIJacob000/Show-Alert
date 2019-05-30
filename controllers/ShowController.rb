@@ -112,23 +112,15 @@ class ShowController < ApplicationController
   
     # # destroy
      delete '/:id' do
-    #   # find it
+    #   # find it 
+      booking = Booking.find_by show_id: params[:id]
       show = Show.find params[:id]
-      
-    #   # in the API -- be sure to check that the person doing this
-    #   # is logged in and its their show
-  
-    #   # destroy it
+      bookings = show.bookings
+      puts "This is the booking that is to be destroyed"
+      puts bookings
+      bookings.destroy
       show.destroy
-  
-    #   session[:message] = {
-    #     success: true,
-    #     status: "good",
-    #     message: "Successfully destroyed show ##{show.id}"
-    #   }
-  
-    #   # redirect (to index perhaps?)
-     redirect '/shows'
+      redirect '/shows'
   
     end
   

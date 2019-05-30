@@ -20,6 +20,18 @@ get '/:id' do
 	erb :band_show
 end
 
+put '/:id' do 
+	band = Band.find params[:id]
+	band.name = params[:username]
+	band.password = params[:password]
+	band.description = params[:description]
+	band.save
+	session[:message]={
+		success: true,
+		message: "Updates to band info successfull!"
+	}
+	redirect '/bands'
+end
 
 
 post '/login' do
@@ -74,18 +86,6 @@ get '/logout' do
 end
 
 
-put '/:id' do 
-	band = Band.find params[:id]
-	band.name = params[:username]
-	band.password = params[:password]
-	band.description = params[:description]
-	band.save
-	session[:message]={
-		success: true,
-		message: "Updates to band info successfull!"
-	}
-	redirect '/bands'
-end
 
 delete '/:id' do 
 	band = Band.find params[:id]

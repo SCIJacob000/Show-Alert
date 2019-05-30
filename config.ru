@@ -4,6 +4,7 @@ require 'sinatra/base'
 require './controllers/ApplicationController'
 require './controllers/ShowController'
 require './controllers/BandController'
+require './controllers/BookingController'
 
 require './models/ShowModel'
 require './models/BookingModel'
@@ -22,6 +23,10 @@ map ('/shows') {
 
 map ('/bands') {
   run BandController
+}
+
+map ('/bookings'){
+	run BookingController
 }
 
 
