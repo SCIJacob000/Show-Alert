@@ -27,7 +27,7 @@ class ApplicationController < Sinatra::Base
 
   get '/' do 
     # render a splash page or home page    
-    redirect '/shows'
+    redirect '/bands'
   end
 
 
