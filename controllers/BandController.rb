@@ -13,8 +13,10 @@ get '/:id/edit' do
 	erb :band_edit
 end
 
+	 #make sure to embed the id in the query string aka path of link that hits this route!
 get '/:id' do
-	band = Band.find_by id: params[:id] #make sure to embed the id in the query string aka path of link that hits this route!
+	@band = Band.find_by id: params[:id]
+	@shows = @band.shows
 	erb :band_show
 end
 

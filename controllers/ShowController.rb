@@ -80,7 +80,6 @@ class ShowController < ApplicationController
     puts session
       erb :new_show
     end
->
   
     # show -- 
       # get show from db in a var
