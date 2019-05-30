@@ -8,11 +8,20 @@ end
 # user = User.find_by username: params[:username]
 # pw = params[:password]
 # set session
+
+
+get '/logout' do
+    session.destroy
+    session[:message] = {
+      success: true,
+      message: "Rock On Dudes" #...so that we can use it here
+    }
+      redirect '/bands'
+end
 get '/:id/edit' do
 	@band = Band.find params[:id]#again i believe this will work as long as the link that takes you here includes the bands id!
 	erb :band_edit
 end
-
 	 #make sure to embed the id in the query string aka path of link that hits this route!
 get '/:id' do
 	@band = Band.find_by id: params[:id]
@@ -74,15 +83,6 @@ post '/register' do
   	}
   	redirect '/bands'
   	end
-end
-
-get '/logout' do
-    session.destroy
-    session[:message] = {
-      success: true,
-      message: "Rock On Dudes" #...so that we can use it here
-    }
-      redirect '/bands/login'
 end
 
 
