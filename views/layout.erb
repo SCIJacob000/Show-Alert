@@ -14,6 +14,7 @@
         Logged in as <%= session[:bandname] %> |
         <a href="/bands/logout">Log out</a> |
         <a href="/shows/new">Click here to create a new show!</a>
+        <a href="/shows/<%= show.id %>/edit">(Edit this show)</a> 
       <% else %>
         <a href="/bands/login">Log in</a> | 
         <a href="/bands/register">Register</a>
