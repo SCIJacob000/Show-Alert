@@ -73,7 +73,7 @@ post '/register' do
   	session[:username]= band.name
   	session[:message]={
   		success: true,
-  		message: "Welcome to the family #{band.username}"
+  		message: "Welcome to the family #{band.name}"
   	}
   	redirect '/bands'
   	else
