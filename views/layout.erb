@@ -7,15 +7,13 @@
 <body>
 
   <header>
-    <nav>
-      <a href="/shows">Show Index</a> |
-      <a href="/bands">Bands Index</a> 
-    </nav>
+  
 
     <nav>
       <% if session[:logged_in] %>
-        Logged in as <%= session[:bandname] %>
-        <a href="/bands/logout">Log out</a>
+        Logged in as <%= session[:bandname] %> |
+        <a href="/bands/logout">Log out</a> |
+        <a href="/shows/new">Click here to create a new show!</a>
       <% else %>
         <a href="/bands/login">Log in</a> | 
         <a href="/bands/register">Register</a>
