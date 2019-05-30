@@ -4,10 +4,10 @@
   <ul>
     <% @shows.each do |show| %>
       <li>
-          <%= show.id %>
-          <%= show.date_time %>
-          <%= show.tickets %>
-          <a href="/shows/<%= show.id %>/edit">(Edit)</a> 
+          <h3>Show ID: <%= show.id %> </h3>
+          <h3> Show Date & time (UTC): <%= show.date_time %>  </h3>
+           <h3> Tickets: <%= show.tickets %> </h3>
+          <a href="/shows/<%= show.id %>/edit">(Edit this show)</a> 
           <form action="/shows/<%= show.id %>" method="POST">
             <input type="hidden" name="_method" value="DELETE">
             <button>Delete</button>

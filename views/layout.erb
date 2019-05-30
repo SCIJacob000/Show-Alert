@@ -8,8 +8,18 @@
 
   <header>
     <nav>
-      <a href="/shows">Show Index</a> |
-      <a href="/shows/new">(Add a Show!)</a> 
+      <a href="/shows">Show Index</a> | 
+    </nav>
+
+    <nav>
+      <% if session[:logged_in] %>
+        Logged in as <%= session[:bandname] %>
+        <a href="/bands/logout">Log out</a>
+        <a href="/shows/new">(Add a Show!)</a>
+      <% else %>
+        <a href="/bands/login">Log in</a> | 
+        <a href="/bands/register">Register</a>
+      <% end %>
     </nav>
   </header>
 
