@@ -1,9 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>All Bands</title>
-</head>
-<body>
+
 	<form action="/bands/login" method="POST">
 		<input type="text" name="username" placeholder="Band Name">
 		<input type="password" name="password" placeholder="Enter your Password">
@@ -20,7 +15,9 @@
 		<% @bands.each do |band| %>
 			<li>
 				<a href="/bands/<%=band.id%>"><%=band.name%></a>
-				<!-- <a href="/bands/<%=band.id%>/edit">Edit</a> this needs to be replaced by a spot on the nav bar!-->
+				<% if band.id == session[:id] %>
+				<a href="/bands/<%=band.id%>/edit">Edit</a>
+				<%end%>
 			</li>
 		<%end%>
 

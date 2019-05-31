@@ -19,7 +19,7 @@ class BookingController < ApplicationController
 				success: true,
 				message: "You have been booked! Break a leg!"
 		}
-		redirect '/bands'
+		redirect "/bands/#{session[:band_id]}"
 		else
 			session[:message]={
 				success: true,

@@ -48,7 +48,6 @@ post '/login' do
   	pw = params[:password]
   	if band && band.authenticate(pw)
   		session[:logged_in] = true
-  		session[:username]= params[:username]
   		session[:username]= band.name
   		session[:band_id] = band.id
   	else
