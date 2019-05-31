@@ -1,5 +1,5 @@
-DROP DATABASE IF EXISTS show_stopper;
-CREATE DATABASE show_stopper;
+-- DROP DATABASE IF EXISTS show_stopper;
+-- CREATE DATABASE show_stopper;
 
 \c show_stopper;
 

@@ -15,10 +15,10 @@
 	</form>
 
 	<h1>Bands:</h1>
-	<ul>
+	<ul class="list-group">
 
 		<% @bands.each do |band| %>
-			<li>
+			<li class="list-group-item-success">
 				<a href="/bands/<%=band.id%>"><%=band.name%></a>
 				<!-- <a href="/bands/<%=band.id%>/edit">Edit</a> this needs to be replaced by a spot on the nav bar!-->
 			</li>

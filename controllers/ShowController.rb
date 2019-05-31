@@ -30,8 +30,9 @@ class ShowController < ApplicationController
       # get all shows from db
       @shows = Show.all
       # show = Show.find_by({ :show_id => params[:id] })
-      # @shows = booking.show_id # just logged in booking's shows
-  
+      #@shows = booking.venue # just logged in booking's shows
+      # @shows = Booking.find_by show_id: params[:id]
+      @bookings = Booking.all
       erb :show_index
     end
   
@@ -110,6 +111,15 @@ class ShowController < ApplicationController
        redirect '/shows'
      end
   
+      # show_show route
+    # get '/:id' do
+    #   @bands = Band.all 
+    #   show = Show.find params[:id]
+    #   booking = Booking.find params[:venue]
+    #   redirect '/:id'
+    # end
+
+
     # # destroy
      delete '/:id' do
     #   # find it 
