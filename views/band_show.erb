@@ -5,11 +5,12 @@
 	<ul>
 		<% @shows.each do |show| %>
 			<li>
-			<p>Show ID: <%=show.id%></p>
-			<p>Tickets on sale?: <%=show.tickets%></p>
-			<form action="/bookings" method="POST">
-				<button>Add Your band to this show!</button>
-			</form>
+				<p>Show ID: <%=show.id%></p>
+				<p>Tickets on sale?: <%=show.tickets%></p>
+				<form action="/bookings/<%=show.id%>" method="POST">
+					<input type="text" name="name">
+					<button>Add A Band To This Show!</button>
+				</form>
 			</li>
 		<%end%>
 	</ul>

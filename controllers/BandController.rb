@@ -49,6 +49,8 @@ post '/login' do
   	if band && band.authenticate(pw)
   		session[:logged_in] = true
   		session[:username]= params[:username]
+  		session[:username]= band.name
+  		session[:band_id] = band.id
   	else
         session[:message] = {
            success: false,
@@ -71,6 +73,7 @@ post '/register' do
   	band.save
   	session[:logged_in]= true
   	session[:username]= band.name
+  	session[:band_id] = band.id
   	session[:message]={
   		success: true,
   		message: "Welcome to the family #{band.name}"

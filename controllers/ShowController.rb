@@ -116,18 +116,11 @@ class ShowController < ApplicationController
      # booking = Booking.find_by show_id: params[:id]
       show = Show.find params[:id]
       bookings = show.bookings
-      puts "This is the booking that is to be destroyed"
-      puts bookings
       bookings.destroy
       show.destroy
       redirect '/shows'
-  
+      
     end
-  
-    # after do
-    #   puts "after filter is running"
-    # end
-  
 end
 
 
