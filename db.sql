@@ -32,7 +32,7 @@ CREATE TABLE public.bands (
 );
 
 
-ALTER TABLE public.bands OWNER TO jacobstolberg;
+ALTER TABLE public.bands OWNER TO calvi;
 
 --
 -- Name: bands_id_seq; Type: SEQUENCE; Schema: public; Owner: jacobstolberg
@@ -47,7 +47,7 @@ CREATE SEQUENCE public.bands_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.bands_id_seq OWNER TO jacobstolberg;
+ALTER TABLE public.bands_id_seq OWNER TO calvi;
 
 --
 -- Name: bands_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jacobstolberg
@@ -68,7 +68,7 @@ CREATE TABLE public.booking (
 );
 
 
-ALTER TABLE public.booking OWNER TO jacobstolberg;
+ALTER TABLE public.booking OWNER TO calvi;
 
 --
 -- Name: booking_id_seq; Type: SEQUENCE; Schema: public; Owner: jacobstolberg
@@ -83,7 +83,7 @@ CREATE SEQUENCE public.booking_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.booking_id_seq OWNER TO jacobstolberg;
+ALTER TABLE public.booking_id_seq OWNER TO calvi;
 
 --
 -- Name: booking_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jacobstolberg
@@ -103,7 +103,7 @@ CREATE TABLE public.shows (
 );
 
 
-ALTER TABLE public.shows OWNER TO jacobstolberg;
+ALTER TABLE public.shows OWNER TO calvi;
 
 --
 -- Name: shows_id_seq; Type: SEQUENCE; Schema: public; Owner: jacobstolberg
@@ -118,7 +118,7 @@ CREATE SEQUENCE public.shows_id_seq
     CACHE 1;
 
 
-ALTER TABLE public.shows_id_seq OWNER TO jacobstolberg;
+ALTER TABLE public.shows_id_seq OWNER TO calvi;
 
 --
 -- Name: shows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: jacobstolberg
@@ -153,8 +153,8 @@ ALTER TABLE ONLY public.shows ALTER COLUMN id SET DEFAULT nextval('public.shows_
 --
 
 COPY public.bands (id, name, password_digest, description) FROM stdin;
-1	Phish	123	Jim's favorite band.
-2	String Cheese Incident	123	A gouda band.
+1,	Phish,	123,	Jim's favorite band.
+2,	String Cheese Incident	123	A gouda band.
 3	Yonder Mountain String Band	123	A classic Bluegrass band.
 \.
 

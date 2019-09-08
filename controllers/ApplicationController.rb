@@ -53,12 +53,12 @@ class ApplicationController < Sinatra::Base
 
   end
 
-  get '*' do
-    # response = ""
-    # 404.times { response += " 404" }
-    # response # figure out how to set status on this response
-    #           # res.status(404).send('404 page not found')
-     halt 404
+  # get '*' do
+  #   # response = ""
+  #   # 404.times { response += " 404" }
+  #   # response # figure out how to set status on this response
+  #   #           # res.status(404).send('404 page not found')
+  #    halt 404
     
-  end
+  # end
 end
