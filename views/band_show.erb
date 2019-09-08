@@ -1,14 +1,15 @@
-<!DOCTYPE html>
 <html>
-<head>
-	<title>All Bands</title>
-</head>
 <body>
-	<h1>Bands:</h1>
+	<h1>Band:<%=@band.name%></h1>
+	<p>Description:<%=@band.description%></p>
 	<ul>
-		<% for i in bands do%>
+		<% @shows.each do |show| %>
 			<li>
-				<a href="/bands/<%=[i]%>">bands[i].name</a>
+			<p>Show ID: <%=show.id%></p>
+			<p>Tickets on sale?: <%=show.tickets%></p>
+			<form action="/bookings" method="POST">
+				<button>Add Your band to this show!</button>
+			</form>
 			</li>
 		<%end%>
 	</ul>

@@ -1,0 +1,26 @@
+
+ <h2>Show Venues</h2>
+ 
+  <ul>
+    <% @shows.each do |show| %>
+      <li>
+          
+          <h3>Show ID: <%= show.id %> </h3>
+          <h3> Show Date & time (UTC): <%= show.date_time %>  </h3>
+           <h3> Tickets on sale?: <%= show.tickets %> </h3>
+       
+          <a href="/shows/<%= show.id %>/edit">(Edit this show)</a> 
+          <form action="/shows/<%= show.id %>" method="POST">
+            <input type="hidden" name="_method" value="DELETE">
+            <button>Delete</button>
+          </form>
+      </li>
+    <% end %>
+  </ul>
+
+  <% @bookings.each do |booking| %>
+      <li><h3>Venue: <%= booking.venue %> </h3>
+          
+      </li>
+    <% end %>
+  </ul>

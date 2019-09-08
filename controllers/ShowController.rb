@@ -30,8 +30,9 @@ class ShowController < ApplicationController
       # get all shows from db
       @shows = Show.all
       # show = Show.find_by({ :show_id => params[:id] })
-      # @shows = booking.show_id # just logged in booking's shows
-  
+      #@shows = booking.venue # just logged in booking's shows
+      # @shows = Booking.find_by show_id: params[:id]
+      @bookings = Booking.all
       erb :show_index
     end
   
@@ -52,16 +53,20 @@ class ShowController < ApplicationController
       new_show.date_time = params[:date_time]
       new_show.tickets = params[:tickets]
       new_show.save 
+
       # figure out who's logged in and create a booking that associates this new show with that band!
-      logged_in_band = Band.find_by({:username => session[:username]})
+      logged_in_band = Band.find_by name: session[:username]
       
+      puts "here is the logged in band: " 
+      puts logged_in_band
+
       new_booking = Booking.new
       new_booking.venue = params[:venue]
       new_booking.band_id = logged_in_band.id
       new_booking.show_id = new_show.id
       new_booking.save
       puts new_booking
-      
+
       session[:message]={
         success: true,
         message: "Successfully created show at #{new_booking.venue}"
@@ -70,17 +75,19 @@ class ShowController < ApplicationController
     end
   
      # new -- 
-  get '/new' do
+    get '/new' do
     # just render template that has form      # just render template that has form
-    erb :new_show
-  end
+    puts "here is the session"
+    puts session
+      erb :new_show
+    end
   
     # show -- 
       # get show from db in a var
       # render show page with it
       
     # update 
-     put '/:id' do
+    put '/:id' do
     #   # find it
        show = Show.find params[:id]
       
@@ -104,44 +111,38 @@ class ShowController < ApplicationController
        redirect '/shows'
      end
   
+      # show_show route
+    # get '/:id' do
+    #   @bands = Band.all 
+    #   show = Show.find params[:id]
+    #   booking = Booking.find params[:venue]
+    #   redirect '/:id'
+    # end
+
+
     # # destroy
      delete '/:id' do
-    #   # find it
+    #   # find it 
+     # booking = Booking.find_by show_id: params[:id]
       show = Show.find params[:id]
-      
-    #   # in the API -- be sure to check that the person doing this
-    #   # is logged in and its their show
-  
-    #   # destroy it
+      bookings = show.bookings
+      bookings.destroy
       show.destroy
-  
-    #   session[:message] = {
-    #     success: true,
-    #     status: "good",
-    #     message: "Successfully destroyed show ##{show.id}"
-    #   }
-  
-    #   # redirect (to index perhaps?)
-     redirect '/shows'
-  
+      redirect '/shows'
+      
     end
-  
-    # after do
-    #   puts "after filter is running"
-    # end
-  
-  end
+end
 
 
 
 
-#   # user = User.find_by username: params[:username]
-# # pw = params[:password]
-# # set session
-# get '/:id/edit' do
-#     @band = Band.find params[:id]#again i believe this will work as long as the link that takes you here includes the bands id!
-#     erb :band_edit
-# end
+  # user = User.find_by username: params[:username]
+# pw = params[:password]
+# set session
+get '/:id/edit' do
+    @band = Band.find params[:id]#again i believe this will work as long as the link that takes you here includes the bands id!
+    erb :band_edit
+end
 
 # get '/:id' do
 #     band = Band.find_by id: params[:id] #make sure to embed the id in the query string aka path of link that hits this route!

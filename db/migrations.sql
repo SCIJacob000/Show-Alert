@@ -1,3 +1,5 @@
+DROP DATABASE IF EXISTS show_stopper;
+CREATE DATABASE show_stopper;
 
 \c show_stopper;
 
@@ -21,9 +23,8 @@ CREATE TABLE shows(
 CREATE TABLE bookings(
 	id SERIAL PRIMARY KEY,
 	venue VARCHAR(256),
-	show_id INTEGER REFERENCES shows(id), --foriegn key
-	band_id INTEGER REFERENCES bands(id) -- foriegn key
+	show_id INTEGER REFERENCES shows(id) ON DELETE CASCADE,
+	band_id INTEGER REFERENCES bands(id) ON DELETE CASCADE
 );
-
 
 

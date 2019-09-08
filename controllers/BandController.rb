@@ -8,16 +8,39 @@ end
 # user = User.find_by username: params[:username]
 # pw = params[:password]
 # set session
+
+
+get '/logout' do
+    session.destroy
+    session[:message] = {
+      success: true,
+      message: "Rock On Dudes" #...so that we can use it here
+    }
+      redirect '/bands'
+end
 get '/:id/edit' do
 	@band = Band.find params[:id]#again i believe this will work as long as the link that takes you here includes the bands id!
 	erb :band_edit
 end
-
+	 #make sure to embed the id in the query string aka path of link that hits this route!
 get '/:id' do
-	band = Band.find_by id: params[:id] #make sure to embed the id in the query string aka path of link that hits this route!
+	@band = Band.find_by id: params[:id]
+	@shows = @band.shows
 	erb :band_show
 end
 
+put '/:id' do 
+	band = Band.find params[:id]
+	band.name = params[:username]
+	band.password = params[:password]
+	band.description = params[:description]
+	band.save
+	session[:message]={
+		success: true,
+		message: "Updates to band info successfull!"
+	}
+	redirect '/bands'
+end
 
 
 post '/login' do
@@ -25,13 +48,14 @@ post '/login' do
   	pw = params[:password]
   	if band && band.authenticate(pw)
   		session[:logged_in] = true
-  		session[:username]= band.name
+  		session[:username]= params[:username]
   	else
         session[:message] = {
            success: false,
            message: "Invalid Log-In Credentials Please Try Again!"
     }
     end
+    puts session[:username]
         redirect '/bands'
 end
 
@@ -49,7 +73,7 @@ post '/register' do
   	session[:username]= band.name
   	session[:message]={
   		success: true,
-  		message: "Welcome to the family #{band.username}"
+  		message: "Welcome to the family #{band.name}"
   	}
   	redirect '/bands'
   	else
@@ -61,28 +85,7 @@ post '/register' do
   	end
 end
 
-get '/logout' do
-    session.destroy
-    session[:message] = {
-      success: true,
-      message: "Rock On Dudes" #...so that we can use it here
-    }
-      redirect '/bands/login'
-end
 
-
-put '/:id' do 
-	band = Band.find params[:id]
-	band.name = params[:username]
-	band.password = params[:password]
-	band.description = params[:description]
-	band.save
-	session[:message]={
-		success: true,
-		message: "Updates to band info successfull!"
-	}
-	redirect '/bands'
-end
 
 delete '/:id' do 
 	band = Band.find params[:id]

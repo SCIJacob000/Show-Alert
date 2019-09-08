@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title></title>
+</head>
+<body>
+<form action="/bands/<%=@band.id%>" method="POST">
+	<input type="hidden" name="_method" value="PUT" />
+	<input type="text" name="username" value="<%= @band.name %>">
+	<input type="text" name="password" value="<%= @band.password %>">
+	<input type="text" name="description" value="<%= @band.description%>">
+	<button>Update Band Account Info!</button>
+</form>
+</body>
+</html>

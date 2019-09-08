@@ -9,12 +9,18 @@
 		<input type="password" name="password" placeholder="Enter your Password">
 		<button>Log-In</button>
 	</form>
+	
+	<form action="/bands/logout" method="GET">
+		<button>Logout</button>
+	</form>
+
 	<h1>Bands:</h1>
-	<ul>
+	<ul class="list-group">
 
 		<% @bands.each do |band| %>
-			<li>
-				<a href="#"><%=band.name%></a>
+			<li class="list-group-item-success">
+				<a href="/bands/<%=band.id%>"><%=band.name%></a>
+				<!-- <a href="/bands/<%=band.id%>/edit">Edit</a> this needs to be replaced by a spot on the nav bar!-->
 			</li>
 		<%end%>
 

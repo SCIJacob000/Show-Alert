@@ -2,7 +2,14 @@ class ApplicationController < Sinatra::Base
   require 'bundler'
   Bundler.require()
 
-  # enable :sessions
+
+
+
+
+
+  require './config/environments'
+
+  enable :sessions
 
   ActiveRecord::Base.establish_connection(
   	:adapter => 'postgresql',
@@ -20,7 +27,7 @@ class ApplicationController < Sinatra::Base
 
   get '/' do 
     # render a splash page or home page    
-    redirect '/shows'
+    redirect '/bands'
   end
 
 
