@@ -4,7 +4,7 @@ class BookingController < ApplicationController
 		band_to_add = Band.find_by name: params[:name]
 		show = Show.find params[:id]
 		existing_booking = Booking.find_by show_id: params[:id]
-		if ((existing_booking.band_id == session[:band_id]) && (session[:logged_in] == true))
+		if ((existing_booking.band_id == session[:band_id]) && (session[:logged_in] == true) && band_to_add)
 			#build it
 			booking = Booking.new
 			#set values

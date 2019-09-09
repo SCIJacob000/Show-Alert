@@ -1,13 +1,11 @@
 
+	<% if not session[:logged_in] %>
 	<form action="/bands/login" method="POST">
 		<input type="text" name="username" placeholder="Band Name">
 		<input type="password" name="password" placeholder="Enter your Password">
 		<button>Log-In</button>
 	</form>
-	
-	<form action="/bands/logout" method="GET">
-		<button>Logout</button>
-	</form>
+	<% end %>
 
 	<h1>Bands:</h1>
 	<ul class="list-group">

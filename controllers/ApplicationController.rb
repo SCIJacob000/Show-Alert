@@ -1,20 +1,11 @@
 class ApplicationController < Sinatra::Base
+
   require 'bundler'
   Bundler.require()
-
-
-
-
-
 
   require './config/environments'
 
   enable :sessions
-
-  ActiveRecord::Base.establish_connection(
-  	:adapter => 'postgresql',
-  	:database => 'show_stopper'
-  )
 
   use Rack::MethodOverride # we "use" middleware here, just like in express
   set :method_override, true
